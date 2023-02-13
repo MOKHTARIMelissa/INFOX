@@ -1,0 +1,44 @@
+\documentclass[12pt,sigconf,letterpaper,anonymous,nonacm]{acmart}
+\usepackage{biblatex}
+\addbibresource{sample.bib}
+\usepackage{numprint}
+\setcopyright{acmcopyright}
+\copyrightyear{2018}
+\acmYear{2018}
+\acmDOI{XXXXXXX.XXXXXXX}
+
+
+%\addbibresource{sample-base.bib}
+
+
+\begin{document}
+
+\title{Disinformation vulnerability in Facebook groups}
+
+\maketitle
+
+\section{Introduction}
+With the daily use of social media in their diversity: Facebook, Twitter, Instagram, Snapchat, Weibo, etc, the users witnessed their  feed flooded with information which is not always checked. This is problemtic because it makes the users an easy target to malicious sources with the goal of promoting a certain agenda or idea. The huge impact of misinformation shared on social media was witnessed the 2016 presidential election in the USA where manny people voted for Trump after the paper leak about Clinton. The recent huge wave of disinformation happened during the covid crisis where many people lost trust in their governments and refused to get vaccinated.\par
+The impact of disinformation is amplified on the vulnerable users, because they believe the information they receive really fast.
+Manny studies discussed the vulnerability of users individually and tried to predict if an individual is robust to false information or not. However, no study has addressed the prediction of the vulnerability of groups on social media. That’s why we discuss this theme in our project. Our work is not finished. In this article we present what we did and the steps we intend to do to complete our work. First we present how the data collection has been done, then we present the hypothesis we fixed, after that, the analyse methods we intend to do and the predictive model we will use and how our work will be in  the service of the society.
+\section{Previous works}
+The individual vulnerability of users to misinformation has been addressed by many researchers. They have used descriptive machine learning algorithms to get the characteristics that differences the robust users from the vulnerable ones. One of these researchers is Andrew Guess (2019) \cite{11_rapp} who had concluded that the age of the user is the main influent factor. The users over 65 years share more than 2-time disinformation content than users within 45 to 65 years. They also did conclude that the political appurtenance influences the vulnerability to misinformation where republicans and whom define as independent share more disinformation than democrats. Natural language of users is another factor studied by Y Mu (2022) \cite{4} who deducted that vulnerable people to misinformation tend to use a lot of political hashtags on their social media accounts and to use frequently causal terms (for example: because, that’s why, etc). While resistant users use more uncertainty emojis, adverbs as well as words referring to false information (for example: disinformation, misleading, etc).\par
+Other researchers had build models to predict if a user is susceptible to false information or not.  Mu and his colleagues (2022) \cite{6_rapp} had used the natural language processing to build an hierarchical transformer exploiting the writings of the user on his social media account to do this prediction. For his turn Mu(2022) \cite{29_rapp} has used transfer learning to adapt a medical model to this task. Another model has used the GNN, a recent type of machine learning models, to respond to this task. \par
+Even though disinformation may have  destructing impacts on users and even more if its propagated in social media groups but, by consulting the state of art, we notice that no work has addressed the problem of predicting and understanding disinformation resistance of groups on social media, except for Chang (2021) \cite{6} that supposed that the diversity of interactions on the Facebook groups may indicate robustness to false information. That’s why we  address the issue of predicting robust groups to disinformation. 
+\section{Data collection}
+After doing a state of the art and analysing previous works, we worked on our first contribution which is building a software capable of collecting data about Facebook groups sharing false information.\par
+To do so, we first collected a list provided by a news-checker organism. This list contains domain links to web pages sharing false information. We collected all the links present in this HTML pages and filtered them to delete the links to private Facebook groups whose publications are not attainable. After that, we searched the links on Facebook using Crowdtangle \footnote{Meta API.}. We used the \emph{link} endpoint to collect data about the publication of Facebook groups sharing this links like the identifier of each group, the number of reactions to the publication, the date of publication and other information. Next, using another endpoint, \emph{leaderboard}, we collected data about the groups sharing these links: the number of followers, the total number of reactions to videos, etc.\par
+To annotate our dataset, we choose to mark as vulnerable each group with more than 2 false information links shared on its wall.
+
+\section{Hypothesis}
+We started our work with a state of art that made us think about some hypothesis. After reading the work of Mu (2022) \cite{29_rapp} that used the domain sequence of the user's false information shared links to determine whether the individual is robust to disinformation or not, we suggest that the same thing for the groups. We suppose that the sharing sequence of false information may determine the resilience of the group to disinformation. In addition to that we suppose that the sequence of the quotient between the actual number of reactions to each disinformation publication of the group on the expected number of reactions\footnote{The average number of reactions at the moment of the publication.} is also a factor to test.
+\section{study}
+To verify our hypothesis, we intend to do an analytic study using descriptive machine learning algorithms. According to the results we will adapt our strategy and build a predictive model to determine whether a given Facebook group is resilient to disinformation or not. We are inspired by the work of Mu (2022) \cite{29_rapp} that proposed an adapted medical model to predict individual resistance to disinformation. This model will be adapted to predict the resilience of a group.\par
+To give our work a public utility, we are planning on building a web service integrating our predictive model, so that journalists and activist to monitor in which groups the disinformation is mostly shared. This will allow to know in which groups to search and sensitize to reduce and restrain the impact of false information.
+\section{Conclusion}
+Been informed is a right, but in our centry false information is every where and its sharing in communities may cause huge damages. We hope that our work will help and we attend to extend our work on other social plateforms such as instagram pages and other types of publications sharing disinformation such as images and videos.
+\printbibliography
+\end{document}
+
+
+
